@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="background-video">
+            <source src="your-video-file.mp4" type="video/mp4">
+            브라우저가 동영상을 지원하지 않습니다.
+        </video>
+    </div>
+
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <input type="text" id="username" placeholder="아이디" required>
+            <input type="password" id="password" placeholder="비밀번호" required>
+            <button type="submit">로그인</button>
+        </form>
+    </div>
+
+    <div class="main-container" id="mainContainer" style="display:none;">
+        <div class="box gps-box">
+            <h3>현재 GPS 위치</h3>
+            <p>GPS 정보를 표시합니다.</p>
+        </div>
+        <div class="box heartbeat-box">
+            <h3>심장 박동</h3>
+            <p>심장 박동 정보를 표시합니다.</p>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username === 'pi' && password === 'hello') {
+                document.querySelector('.login-container').style.display = 'none';
+                document.getElementById('mainContainer').style.display = 'flex';
+                return false;
+            } else {
+                alert('아이디 또는 비밀번호가 잘못되었습니다.');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
