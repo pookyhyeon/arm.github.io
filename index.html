@@ -61,7 +61,7 @@
         }
 
         document.getElementById('gpsBox').addEventListener('click', function() {
-            fetch('https://ipinfo.io/json?token=858943a070d1bf')  // IPinfo API를 통해 IP 기반 위치 정보 가져오기
+            fetch('https://ipinfo.io/json?token=')  // IPinfo API를 통해 IP 기반 위치 정보 가져오기
                 .then(response => response.json())
                 .then(data => {
                     const loc = data.loc.split(','); // loc 형식: "latitude,longitude"
