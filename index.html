@@ -5,13 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 페이지</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANv9Tt0WeClUR6-BpZ1RuV40V7FLeixP8" defer></script> <!-- Google Maps API 불러오기 -->
 </head>
 <body>
     <div class="video-background">
         <video autoplay muted loop id="background-video">
-            <source src="your-video-file.mp4" type="video/mp4">
+            <source src="hello.mp4" type="video/mp4">
             브라우저가 동영상을 지원하지 않습니다.
         </video>
+    </div>
+
+    <!-- 배경 위에 큰 하얀 글씨 -->
+    <div class="overlay-text">
+        모두가 운전할 수 있는 새로운 미래를 꿈꿉니다.
+    </div>
+
+    <!-- 로그인 위에 큰 제목 -->
+    <div class="brand">
+        IRONMECHS
     </div>
 
     <div class="login-container">
@@ -24,9 +35,9 @@
     </div>
 
     <div class="main-container" id="mainContainer" style="display:none;">
-        <div class="box gps-box">
+        <div class="box gps-box" id="gpsBox">
             <h3>현재 GPS 위치</h3>
-            <p>GPS 정보를 표시합니다.</p>
+            <div id="map" style="width: 100%; height: 400px;"></div> <!-- 지도 표시할 영역 -->
         </div>
         <div class="box heartbeat-box">
             <h3>심장 박동</h3>
@@ -48,6 +59,31 @@
                 return false;
             }
         }
+
+        document.getElementById('gpsBox').addEventListener('click', function() {
+            fetch('https://ipinfo.io/json?token=858943a070d1bf')  // IPinfo API를 통해 IP 기반 위치 정보 가져오기
+                .then(response => response.json())
+                .then(data => {
+                    const loc = data.loc.split(','); // loc 형식: "latitude,longitude"
+                    const latitude = parseFloat(loc[0]);
+                    const longitude = parseFloat(loc[1]);
+
+                    // Google Maps 초기화 및 마커 표시
+                    const map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: latitude, lng: longitude },
+                        zoom: 14
+                    });
+
+                    const marker = new google.maps.Marker({
+                        position: { lat: latitude, lng: longitude },
+                        map: map
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching location:', error);
+                    alert('위치 정보를 가져오는 데 실패했습니다.');
+                });
+        });
     </script>
 </body>
 </html>

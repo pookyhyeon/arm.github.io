@@ -6,11 +6,10 @@
 
 body, html {
     height: 100%;
+    width: 100%;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000;
+    background: transparent;
+    overflow: hidden;
 }
 
 .video-background {
@@ -29,11 +28,42 @@ body, html {
     object-fit: cover;
 }
 
+.overlay-text {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    font-weight: bold;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.brand {
+    position: absolute;
+    top: 7%;
+    width: 100%;
+    text-align: center;
+    font-size: 72px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-weight: bold;
+    z-index: 1;
+    letter-spacing: 10px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
 .login-container {
-    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    z-index: 2;
 }
 
 .login-container h2 {
@@ -47,12 +77,13 @@ body, html {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .login-container button {
     padding: 10px 20px;
     border: none;
-    background-color: #4CAF50;
+    background-color: #6786eb;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -60,28 +91,43 @@ body, html {
 }
 
 .login-container button:hover {
-    background-color: #45a049;
+    background-color: #6786eb;
 }
 
 .main-container {
     display: flex;
-    justify-content: space-around;
-    width: 80%;
-    margin-top: 50px;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: calc(100% - 180px);
+    padding: 40px;
+    z-index: 2;
+    position: absolute;
+    bottom: 20px;
 }
 
 .box {
-    width: 45%;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+    flex: 1;
+    margin: 0 20px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     text-align: center;
+    font-size: 24px;
+    height: 600px; /* 박스 높이를 더 크게 설정 */
+}
+
+#map {
+    height: 100%;
+    width: 100%;
 }
 
 .gps-box, .heartbeat-box {
     font-size: 18px;
+    color: white;
 }
 
 h3 {
     margin-bottom: 15px;
+    color: white;
 }
